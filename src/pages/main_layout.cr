@@ -46,6 +46,7 @@ abstract class MainLayout
           end
         end
         render_feature_grid
+        render_freeform_text
       end
     end
   end
@@ -53,7 +54,7 @@ abstract class MainLayout
   private def render_feature_grid
     div class: "container mx-auto px-6 py-5" do
       mount Shared::FlashMessages.new(@context.flash)
-      div class: "flex lg:w-5/6 md:bg-white mx-auto mt-8 md:rounded-lg md:shadow md:-mt-12 md:px-5 md:py-10" do
+      div class: "flex md:bg-white mx-auto mt-8 md:rounded-lg md:shadow md:-mt-12 md:px-5 md:py-12" do
         content_block "Say goodbye to slow", <<-TEXT
         A simple hello world response is returned in 0.1ms. Rendering
         complex JSON takes only a few milliseconds.
@@ -76,6 +77,37 @@ abstract class MainLayout
     div class: "w-full md:w-1/3 px-8" do
       h3 title, class: "mb-3 text-black font-normal text-base"
       para body, class: "leading-loose text-sm text-grey-darker"
+    end
+  end
+
+  private def render_freeform_text
+    div class: "container mx-auto px-32 markdown-content mt-16" do
+      raw CustomMarkdownRenderer.render_to_html <<-TEXT
+      ### Why is modern web development so complicated?
+
+      **There are more choices in tech than ever**, and with it comes more questions and more complexity.
+
+      Have you ever thought:
+
+      * "It was so easy to get started, but **now it takes forever to change anything**!"
+      * "Why do I have to write **so much boilerplate**?"
+      * "How do **so many bugs make it to production**?"
+      * "Why is my app **so slow**!?"
+      * "Why do I have to choose between fast prototyping and long term maintainability?"
+
+      Every performance issue and every bug steals precious time from making your service better.
+
+      ### What if you could get something up quickly *and* maintain it for years to come?
+
+      Imagine this:
+
+      * Generators for quick code creation
+      * (Optional) Built in authentication
+      * Secure by default
+      * (Optional) Built in web pack config to get an SPA off the ground fast
+      * Insanely fast execution so users aren’t left waiting
+      * Powerful type system that helps catch bugs before they ever hit production
+      TEXT
     end
   end
 end
