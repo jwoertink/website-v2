@@ -46,10 +46,28 @@ abstract class MainLayout
   end
 
   private def render_main_content
-    div class: "container mx-auto px-6" do
+    div class: "container mx-auto px-6 py-5" do
       mount Shared::FlashMessages.new(@context.flash)
-      # TODO: Add real page content later
-      # content
+      2.times do
+        div class: "flex md:w-2/3 mx-auto mt-8" do
+          content_block "Say goodbye to slow", <<-TEXT
+          A simple hello world response is returned in 0.1ms. Rendering
+          complex HTML takes 1ms.
+          TEXT
+
+          content_block "Batteries included", <<-TEXT
+          Authentication, asset management, CORS, database ORM, and more can
+          all be included when creating a new Lucky project.
+          TEXT
+        end
+      end
+    end
+  end
+
+  private def content_block(title, body)
+    div class: "md:w-1/2 px-5" do
+      h3 title, class: "mb-3 text-teal-dark font-normal text-lg"
+      para body, class: "leading-loose"
     end
   end
 end
