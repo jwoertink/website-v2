@@ -45,18 +45,18 @@ abstract class MainLayout
             end
           end
         end
-        render_main_content
+        render_feature_grid
       end
     end
   end
 
-  private def render_main_content
+  private def render_feature_grid
     div class: "container mx-auto px-6 py-5" do
       mount Shared::FlashMessages.new(@context.flash)
-      div class: "flex lg:w-5/6 md:bg-white mx-auto mt-8 md:rounded-lg md:shadow md:-mt-12 md:px-4 md:py-8" do
+      div class: "flex lg:w-5/6 md:bg-white mx-auto mt-8 md:rounded-lg md:shadow md:-mt-12 md:px-5 md:py-10" do
         content_block "Say goodbye to slow", <<-TEXT
         A simple hello world response is returned in 0.1ms. Rendering
-        complex HTML takes 1ms.
+        complex JSON takes only a few milliseconds.
         TEXT
 
         content_block "Batteries included", <<-TEXT
@@ -64,9 +64,9 @@ abstract class MainLayout
         all be included when creating a new Lucky project.
         TEXT
 
-        content_block "Batteries included", <<-TEXT
-        Authentication, asset management, CORS, database ORM, and more can
-        all be included when creating a new Lucky project.
+        content_block "Fewer bugs = more joy", <<-TEXT
+        Instead of finding bugs in QA or in production, Lucky is designed to
+        catch as many bugs as possible at compile time.
         TEXT
       end
     end
