@@ -38,7 +38,7 @@ abstract class MainLayout
                 TEXT
               end
 
-              div class: "my-10" do
+              div class: "my-10 md:mt-10 md:mb-8" do
                 link "View on GitHub", "https://github.com/luckyframework/lucky", class: "btn btn--blue w-full sm:w-auto sm:mr-5"
                 link "Get Started", Guides::GettingStarted::Installing, class: "btn w-full sm:w-auto mt-6 sm:mt-0"
               end
@@ -53,7 +53,7 @@ abstract class MainLayout
   private def render_main_content
     div class: "container mx-auto px-6 py-5" do
       mount Shared::FlashMessages.new(@context.flash)
-      div class: "flex lg:w-5/6 mx-auto mt-8" do
+      div class: "flex lg:w-5/6 md:bg-white mx-auto mt-8 md:rounded-lg md:shadow md:-mt-12 md:px-4 md:py-8" do
         content_block "Say goodbye to slow", <<-TEXT
         A simple hello world response is returned in 0.1ms. Rendering
         complex HTML takes 1ms.
@@ -73,9 +73,9 @@ abstract class MainLayout
   end
 
   private def content_block(title, body)
-    div class: "md:w-1/3 px-5" do
-      h3 title, class: "mb-3 text-teal-dark font-normal text-lg"
-      para body, class: "leading-loose"
+    div class: "w-full md:w-1/3 px-8" do
+      h3 title, class: "mb-3 text-black font-normal text-base"
+      para body, class: "leading-loose text-sm text-grey-darker"
     end
   end
 end
