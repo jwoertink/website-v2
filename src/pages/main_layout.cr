@@ -23,14 +23,19 @@ abstract class MainLayout
         div class: "bg-blue-gradient" do
           div class: "py-10 md:py-16 px-6 sm:px-10 mx-auto container text-center text-white" do
             div class: "mx-auto md:px-32" do
-              h1 "Build lightning fast web apps with fewer bugs", class: "leading-normal font-light text-3xl md:text-4xl"
+              h1 class: "leading-normal text-blue-lightest font-light text-3xl md:text-4xl" do
+                text "Build "
+                span "lightning fast", class: "whitespace-no-wrap text-white italic mr-1 border-b-2 border-teal-light"
+                text " web apps with "
+                span "fewer bugs", class: "whitespace-no-wrap text-white italic border-b-2 border-teal-light"
+              end
 
-              para class: "opacity-75 sm:px-10 leading-loose mt-10 text-lg sm:text-xl" do
+              para class: "text-blue-lighter md:px-10 lg:px-24 leading-loose mt-10 text-lg sm:text-xl" do
                 text <<-TEXT
-              Lucky is a web framework written in Crystal. It helps you
-              prototype quickly, catch bugs at compile time, and deliver
-              responses quickly.
-              TEXT
+                Lucky is a web framework written in Crystal. It helps you
+                work quickly, catch bugs at compile time, and deliver
+                blazing fast responses.
+                TEXT
               end
 
               div class: "my-10" do
@@ -48,24 +53,27 @@ abstract class MainLayout
   private def render_main_content
     div class: "container mx-auto px-6 py-5" do
       mount Shared::FlashMessages.new(@context.flash)
-      2.times do
-        div class: "flex md:w-2/3 mx-auto mt-8" do
-          content_block "Say goodbye to slow", <<-TEXT
-          A simple hello world response is returned in 0.1ms. Rendering
-          complex HTML takes 1ms.
-          TEXT
+      div class: "flex lg:w-5/6 mx-auto mt-8" do
+        content_block "Say goodbye to slow", <<-TEXT
+        A simple hello world response is returned in 0.1ms. Rendering
+        complex HTML takes 1ms.
+        TEXT
 
-          content_block "Batteries included", <<-TEXT
-          Authentication, asset management, CORS, database ORM, and more can
-          all be included when creating a new Lucky project.
-          TEXT
-        end
+        content_block "Batteries included", <<-TEXT
+        Authentication, asset management, CORS, database ORM, and more can
+        all be included when creating a new Lucky project.
+        TEXT
+
+        content_block "Batteries included", <<-TEXT
+        Authentication, asset management, CORS, database ORM, and more can
+        all be included when creating a new Lucky project.
+        TEXT
       end
     end
   end
 
   private def content_block(title, body)
-    div class: "md:w-1/2 px-5" do
+    div class: "md:w-1/3 px-5" do
       h3 title, class: "mb-3 text-teal-dark font-normal text-lg"
       para body, class: "leading-loose"
     end
